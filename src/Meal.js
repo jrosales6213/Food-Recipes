@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Card, CardImg, CardText, CardBody,
+  CardTitle,  CardFooter, Button} from 'reactstrap';
 
 export default function Meal({ meal }) {
   const [imageUrl, setImageUrl] = useState("");
@@ -16,31 +18,17 @@ export default function Meal({ meal }) {
   });
 
   return (
-    // <article>
-    //   <h1>{meal.title}</h1>
-    //   <img src={imageUrl} alt="recipe" />
-    //   <ul className="instructions">
-    //     <li>Preparation time: {meal.readyInMinutes} minutes</li>
-    //     <li>Number of servings: {meal.servings}</li>
-    //   </ul>
+<Card className="m-2 food-card">
+<CardImg variant="top" src={imageUrl} />
+<CardBody>
+  <CardTitle>{meal.title}</CardTitle>
+  <CardText>Preparation time : {meal.readyInMinutes} mins</CardText>
+  <CardText>Servings: {meal.servings}</CardText>
+</CardBody>
+  <Button className="button m-2" href={meal.sourceUrl}> Get Recipe</Button>
+</Card>
 
-    //   <a href={meal.sourceUrl}>Go to Recipe</a>
-    // </article>
-
-    <div className="card" >
-  <img className="card-img-top" src={imageUrl} alt="recipe"/>
-  <div className="card-body">
-    <h1>{meal.title}</h1>
-    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <ul>
-    <li>Preparation time: {meal.readyInMinutes} minutes</li>
-    <li>Number of servings: {meal.servings}</li>
-    </ul>
-    <a href={meal.sourceUrl}>Go to Recipe</a>
-  </div>
-</div>
   );
 }
-
 
 
