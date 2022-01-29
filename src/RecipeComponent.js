@@ -1,12 +1,12 @@
 import React from "react";
-import Meal from "./Meal";
-import { Row , ListGroup, ListGroupItem } from "reactstrap";
+import RecipeCard from "./RecipeCard";
+import { Row , ListGroup, ListGroupItem , Col} from "reactstrap";
 
-export default function MealList({ mealData }) {
+export default function RecipeComponent({ mealData }) {
   const nutrients = mealData.nutrients;
 
   return (
-    <main>
+    <Col className="p-4">
   <ListGroup className="justify-content-center m-4" horizontal>
     <ListGroupItem>Calories: {nutrients.calories.toFixed(0)}</ListGroupItem>
     <ListGroupItem>Carbohydrates: {nutrients.carbohydrates.toFixed(0)}</ListGroupItem>
@@ -15,10 +15,10 @@ export default function MealList({ mealData }) {
   </ListGroup>
     <Row xs={1} md={4} className="justify-content-center m-3">
         {mealData.meals.map((meal) => {
-          return <Meal key={meal.id} meal={meal} />;
+          return <RecipeCard key={meal.id} meal={meal} />;
         })}
   </Row>
-    </main>
+    </Col>
   );
 }
 

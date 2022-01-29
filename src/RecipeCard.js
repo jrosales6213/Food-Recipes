@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardImg, CardText, CardBody,
-  CardTitle,  CardFooter, Button} from 'reactstrap';
+  CardTitle, Button} from 'reactstrap';
 
-export default function Meal({ meal }) {
+export default function RecipeCard({ meal }) {
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
@@ -25,9 +25,8 @@ export default function Meal({ meal }) {
   <CardText>Preparation time : {meal.readyInMinutes} mins</CardText>
   <CardText>Servings: {meal.servings}</CardText>
 </CardBody>
-  <Button className="button m-2" href={meal.sourceUrl}> Get Recipe</Button>
+  <Button className="button m-2" onClick={()=> window.open(`${meal.sourceUrl}`, "_blank")}>Get Recipe</Button>
 </Card>
-
   );
 }
 

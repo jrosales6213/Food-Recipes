@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import MealList from "./MealList";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {  Button , Form, FormGroup, Input , Label, Row} from 'reactstrap';
+import RecipeComponent from "./RecipeComponent";
 
 const API_KEY =`${process.env.REACT_APP_API_KEY}`;
-
-
-
 
 const options = {
   method: "GET",
@@ -38,9 +35,11 @@ function App() {
         console.error(error);
       });
   }
+
   function handleChange(e) {
     setCalories(e.target.value);
   }
+
   function Main() {
     return (
     <div className=" hero px-4 py-5 text-center">
@@ -52,52 +51,21 @@ function App() {
   </div>
     );
   }
-
   return (
-<>
-<Main/>
-<Row className="justify-content-center text-center m-3">
-<Form className="col-sm-4">
-        <FormGroup className="p-2">
-          <Label className="display-6" for="calories">Enter Daily Calorie Intake</Label>
-          <Input className="col-sm-2 mt-3 mb-3" type="number" name="calories"  placeholder="calories (e.g. 2000)"  onChange={handleChange}/>
-          <Button  onClick={getMealData}>Get Daily Meal Plan</Button>
-        </FormGroup>
-</Form>
-</Row>
-
-
-{/* 
-    <div className="App">
-      <section className="controls">
-        <Input
-          type="number"
-          placeholder="Calories (e.g. 2000)"
-          onChange={handleChange}
-        />
-
-        <Button onClick={getMealData}>Get Daily Meal Plan</Button>
-      </section> */}
-      {mealData && <MealList mealData={mealData} />}
-      {/* <Card className ="p-3 m-3">
-        <CardImg top width="100%" src="https://media.istockphoto.com/photos/food-backgrounds-table-filled-with-large-variety-of-food-picture-id1155240408?k=20&m=1155240408&s=612x612&w=0&h=Zvr3TwVQ-wlfBnvGrgJCtv-_P_LUcIK301rCygnirbk=" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <ListGroup>
-            <ListGroupItem>Read in 5 minutes</ListGroupItem>
-            <ListGroupItem>5 servings</ListGroupItem>
-            </ListGroup> 
-          <Button >Button</Button>
-        </CardBody>
-      </Card> */}
-    {/* </div> */}
-    </>
-  );
-}
-
-export default App;
-
-
-
+    <>
+    <Main/>
+    <Row className="justify-content-center text-center m-3">
+    <Form className="col-sm-4">
+            <FormGroup className="p-2">
+              <Label className="display-6" for="calories">Enter Daily Calorie Intake</Label>
+              <Input className="col-sm-2 mt-3 mb-3" type="number" name="calories"  placeholder="calories (e.g. 2000)"  onChange={handleChange}/>
+              <Button className="btn btn-primary" onClick={getMealData}>Get Daily Meal Plan</Button>
+            </FormGroup>
+    </Form>
+    </Row>
+          {mealData && <RecipeComponent mealData={mealData} />}
+           </>
+      );
+    }
+    
+    export default App;
